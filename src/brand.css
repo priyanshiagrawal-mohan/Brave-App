@@ -1,0 +1,154 @@
+/* BRAVE brand layer.
+   Hierarchy follows the Claude Design student app: one heavy sentence-case page title,
+   small grey caps section labels (red / amber when urgent), bold card titles, grey meta.
+   Brand shows up as accents: wordmark + amber underline, ‹B› mark, Brave Red actions,
+   Night Black hero panels, red-rule callouts. No gradients, no shadows. */
+
+:root{
+  --red:#C0392B;--blk:#111111;--bone:#F4F1EC;--amb:#EF9F27;
+  --line:#E7E3DC;--line-2:#F0ECE6;--mut:#6B6760;--fnt:#8A857D;
+  --disp:'Bebas Neue','Oswald',Impact,sans-serif;
+}
+
+body{background:#F6F4F0;font-family:'Montserrat',system-ui,sans-serif;color:var(--blk)}
+body.is-m{background:#fff}
+
+/* ---------- Marks ---------- */
+.wordmark{font:400 27px/1 var(--disp);letter-spacing:.02em;color:var(--blk);position:relative;display:inline-block;padding-bottom:5px}
+.wordmark::after{content:"";position:absolute;left:0;bottom:0;height:2px;width:115%;background:var(--amb)}
+.logo-ic{background:var(--blk);color:var(--bone);font-family:var(--disp);display:grid;grid-auto-flow:column;place-content:center;gap:1px;line-height:1;border-radius:6px;flex:none}
+.logo-ic i{font-style:normal;color:var(--amb)}
+.eyebrow{white-space:nowrap;font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--mut)}
+
+/* ---------- Type scale (4 levels) ----------
+   L1 page title · L2 section label · L3 card / row title · L4 meta */
+.h1{font-size:26px;font-weight:800;letter-spacing:-.025em;line-height:1.15}
+.main .h1{font-size:28px}
+.h2{font-size:20px;font-weight:800;letter-spacing:-.02em;line-height:1.2}
+.hbar .ttl{font-size:16px;font-weight:700;letter-spacing:-.01em}
+.num{font-size:22px;font-weight:800;letter-spacing:-.02em}
+.grp{font-size:11.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--mut)}
+.lcard-name,.pcard-name{font-size:15px;font-weight:700;letter-spacing:-.005em}
+.trow-t{font-size:14px;font-weight:600;line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+
+/* ---------- Rhythm ----------
+   Section label sits 8px above its content and 24px below the previous section. */
+.scr{gap:12px}
+.scr>.grp{margin-top:10px;margin-bottom:-4px}
+.sec{display:flex;flex-direction:column;gap:8px}
+.scr>.sec+.sec,.col>.sec+.sec{margin-top:10px}
+.sec-h{display:flex;align-items:center;justify-content:space-between;min-height:20px}
+
+/* ---------- Shell ---------- */
+.nav{border-bottom:1px solid var(--line)}
+.ntab.act,.tab.act{border-bottom-color:var(--red)}
+.xp{background:#FBF4E6;color:#8F5B0B}
+
+/* Overlays: outlined instead of floating on shadows */
+.dlg,.menu,.combo-list{border:1px solid var(--line)}
+.sheet{border-top:1px solid var(--line)}
+.drw{border-left:1px solid var(--line)}
+.seg>.on{box-shadow:inset 0 0 0 1px var(--line)}
+
+/* ---------- Status colour: urgency only ----------
+   red = overdue / blocked · amber = today / due soon · black = done · grey = everything else */
+.gd{color:var(--blk);font-weight:600}
+.td{color:#8F5B0B;font-weight:600}
+.od{color:var(--red);font-weight:600}
+.t-bro{background:#ECEEF1;color:#3E4A5C}
+.t-grn{background:var(--blk);color:#fff}
+.t-agr{background:#E6E0D6;color:var(--blk)}
+.won{background:#EEEBE6;border-color:#D9D3C9;color:var(--blk)}
+
+/* Callouts: brand red rule */
+.gate{border-left:3px solid var(--red);border-radius:0 10px 10px 0}
+
+/* ---------- Lists ---------- */
+/* To-do rows (Home, Inbox): one panel, divided rows */
+.tlist{background:#fff;border:1px solid var(--line);border-radius:14px;display:flex;flex-direction:column;overflow:hidden}
+.tlist.flat{border:0;border-radius:0;background:none}
+.trow{display:flex;align-items:center;gap:12px;padding:12px 14px;cursor:pointer;text-align:left}
+.trow+.trow{border-top:1px solid var(--line-2)}
+.tlist.flat .trow{padding:12px 0}
+.trow:hover{background:#FCFBF9}
+.tlist.flat .trow:hover{background:none}
+.trow:focus-visible{outline:2px solid var(--blk);outline-offset:-2px}
+
+/* Key / value details (Project) */
+.dl{display:flex;flex-direction:column}
+.dl-row{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;width:100%;background:none;border:0;font:inherit;color:inherit;text-align:left}
+button.dl-row{cursor:pointer;align-items:center}
+.dl-row+.dl-row{border-top:1px solid var(--line-2)}
+.dl-k{width:72px;flex:none;font-size:12.5px;color:var(--mut);padding-top:1px}
+.dl-v{flex:1;min-width:0;font-size:13.5px;line-height:1.45}
+
+/* ---------- Projects by client: 3 levels ----------
+   1 client header (tinted band, initials, totals) · 2 project rows (indented, status stripe,
+   progress) · 3 add link (small, red) */
+.pcard{border-radius:14px}
+.pcard-h{display:flex;align-items:center;gap:12px;padding:12px 14px;background:#F6F4F0;border-bottom:1px solid var(--line)}
+.pcard-av{width:36px;height:36px;border-radius:10px;background:var(--blk);color:#fff;display:grid;place-items:center;font-size:13px;font-weight:800;letter-spacing:.02em;flex:none}
+.pcard-av.off{background:#fff;color:var(--blk);border:1px solid var(--line)}
+.pcard-name{font-size:16px;font-weight:800;letter-spacing:-.015em}
+.pcard-sub{font-size:12px;color:var(--mut)}
+.pcard-rows{display:flex;flex-direction:column}
+.prow{position:relative;padding:12px 14px 12px 20px;gap:5px;border-top:0}
+.prow+.prow{border-top:1px solid var(--line-2)}
+.prow::before{content:"";position:absolute;left:0;top:10px;bottom:10px;width:3px;border-radius:0 3px 3px 0;background:#D9D3C9}
+.prow.s-od::before{background:var(--red)}
+.prow.s-due::before{background:var(--amb)}
+.prow.s-done::before{background:var(--blk)}
+.prow.s-drf::before{background:none;border-left:3px dotted #B8B0A3;width:0}
+.prow-t{font-size:14px;font-weight:600}
+.prow .tag{font-size:11px;padding:2px 7px}
+.prow-bar{display:block;height:4px;border-radius:2px;background:#F0ECE6;overflow:hidden;margin-top:3px}
+.prow-bar i{display:block;height:100%;background:var(--blk);border-radius:2px}
+.prow.s-od .prow-bar i{background:var(--red)}
+.prow.s-due .prow-bar i{background:var(--amb)}
+.pcard-add{padding:10px 14px 10px 20px;font-size:12.5px;color:var(--red);border-top:1px solid var(--line-2)}
+.pcard-add:hover{color:#962D22}
+
+/* To-do rows: colour lives in one small dot; text and action stay neutral */
+.tdot{display:inline-block;width:7px;height:7px;border-radius:50%;flex:none;background:var(--mut)}
+.tdot.od{background:var(--red)}
+.tdot.td{background:var(--amb)}
+.lnk.trow-act{color:var(--blk)}
+.lnk.trow-act:hover{color:var(--red)}
+
+.trow-ic{width:34px;height:34px;border-radius:10px;background:#F3F0EB;color:#3A3733;display:grid;place-items:center;flex:none}
+.trow-ic.hot{background:#FBECEA;color:var(--red)}
+.trow-body{display:flex;flex-direction:column;gap:3px;flex:1;min-width:0}
+.trow-m{font-size:12px;color:var(--mut)}
+.trow-m.td{color:#8F5B0B;font-weight:600}
+.trow-btn{flex:none;height:32px;padding:0 14px;border-radius:99px;font-size:12.5px;font-weight:700}
+.trow:hover .trow-btn{border-color:var(--blk)}
+.tlist.flat .trow{padding:10px 0}
+
+/* ---------- Leaderboard podium (top 3) ---------- */
+.podium{display:grid;grid-template-columns:1fr 1.12fr 1fr;gap:8px;align-items:end;margin-top:4px}
+.pod{position:relative;display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center;background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 8px 0;min-width:0;overflow:hidden}
+.pod.p1{background:var(--blk);border-color:var(--blk);color:#fff;padding-top:20px}
+.pod-medal{position:absolute;top:8px;left:8px;min-width:22px;height:22px;padding:0 6px;border-radius:99px;display:grid;place-items:center;font-size:11px;font-weight:800;background:#F3F0EB;color:var(--blk)}
+.pod.p1 .pod-medal{background:var(--amb);color:var(--blk)}
+.pod-av{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font-size:15px;font-weight:800;background:#F3F0EB;color:var(--blk);margin-top:6px}
+.pod.p1 .pod-av{width:54px;height:54px;font-size:18px;background:#fff;color:var(--blk);box-shadow:0 0 0 3px var(--amb)}
+.pod.p2 .pod-av{box-shadow:0 0 0 2px #C9C4BB}
+.pod.p3 .pod-av{box-shadow:0 0 0 2px #C9A27A}
+.pod-name{font-size:13.5px;font-weight:700;max-width:100%;margin-top:4px}
+.pod-sub{font-size:11px;color:var(--fnt);max-width:100%}
+.pod.p1 .pod-sub{color:#C9C4BB}
+.pod-xp{font-size:15px;font-weight:800;letter-spacing:-.01em}
+.pod.p1 .pod-xp{color:var(--amb);font-size:18px}
+.pod-step{align-self:stretch;margin-top:8px;padding:6px 0;font-size:10.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;background:#F6F4F0;color:var(--mut);border-top:1px solid var(--line)}
+.pod.p1 .pod-step{background:#1F1E1C;color:#C9C4BB;border-top-color:#2A2826;padding:10px 0}
+.pod.p2 .pod-step{padding:8px 0}
+.pod.me{outline:2px solid var(--red);outline-offset:-2px}
+.lb-list{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.lb-list .lb{border-radius:0;padding-left:14px;padding-right:14px}
+.lb-list .lb+.lb{border-top:1px solid var(--line-2)}
+.lb-gap{text-align:center;color:var(--fnt);font-size:12px;padding:2px 0;border-top:1px solid var(--line-2)}
+
+/* Bottom nav: Pipeline is the main job, so it sits in the middle as a raised red button */
+.bni.hero .bel{width:48px;height:48px;margin-top:-26px;border-radius:16px;background:var(--red);color:#fff;display:grid;place-items:center;border:4px solid #fff}
+.bni.hero{color:var(--blk)}
+.bni.hero.act{color:var(--red)}
